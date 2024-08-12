@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const urlSchema = new mongoose.Schema({
     shortId: {
@@ -25,9 +25,7 @@ const urlSchema = new mongoose.Schema({
         lon: String,
         isp: String,
         org: String,
-        device: String,
-        os: String,
-        zip: Number
+        zip: String 
     }],
 
     createdBy: {
@@ -35,8 +33,7 @@ const urlSchema = new mongoose.Schema({
         ref: "users"
     }
 
-}, { timestamps: true }
-);
+}, { timestamps: true });
 
 const url_model = mongoose.model("url", urlSchema);
 
