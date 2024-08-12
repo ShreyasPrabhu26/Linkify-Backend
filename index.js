@@ -1,10 +1,8 @@
 const express = require("express");
 const cors = require('cors');
-const swaggerDocument = require('./swagger.json');
 const requestIp = require('request-ip');
 const useragent = require('express-useragent');
 const cookieParser = require('cookie-parser');
-const swaggerUi = require('swagger-ui-express');
 const compression = require('compression')
 const connectToMongoDb = require('./mongoDbConnection');
 const { checkAuth } = require('./middlewares/auth');
@@ -28,7 +26,6 @@ app.use(compression())
 app.use(checkAuth);
 
 // Routes
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/", apiRouter);
 app.use("/user", userRouter);
 

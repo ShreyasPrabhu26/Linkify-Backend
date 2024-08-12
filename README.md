@@ -6,6 +6,9 @@
 
 - API documentation is provided by Swagger.After starting the server, navigate to [http://localhost:8000/api-docs](http://localhost:8000/api-docs) to view the Swagger UI.
 
+- Post-Man Documentation [https://www.postman.com/altimetry-operator-42378820/workspace/shreyas-prabhu/collection/34566063-2cb28511-3d07-49b4-a9b1-57ad81c59b44?action=share&creator=34566063](https://www.postman.com/altimetry-operator-42378820/workspace/shreyas-prabhu/collection/34566063-2cb28511-3d07-49b4-a9b1-57ad81c59b44?action=share&creator=34566063)
+
+[<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://app.getpostman.com/run-collection/34566063-2cb28511-3d07-49b4-a9b1-57ad81c59b44?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D34566063-2cb28511-3d07-49b4-a9b1-57ad81c59b44%26entityType%3Dcollection%26workspaceId%3D24aafa16-5bcb-4098-b8ef-93d99e462a59)
 
 ## Project Overview
 

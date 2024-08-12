@@ -7,6 +7,13 @@ const { getIpInfo } = require('../service/getIpInfo');
 const { getCurrentDateInfo } = require('../service/getCurrentDateInfo');
 
 // URL routes
+router.get("/", (req, res) => {
+    res.status(200).json({
+        message: "Welcome to Linkify Api Platform!",
+        source_code: "https://github.com/ShreyasPrabhu26/Linkify-Backend"
+    })
+})
+
 router.post('/url/shorten', authLoggedInUser, urlController.handleGenerateNewShortURL);
 router.get('/url/analytics/:shortId', authLoggedInUser, urlController.handleGetAnalytics);
 
