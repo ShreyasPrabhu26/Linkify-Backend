@@ -14,7 +14,7 @@ const userRouter = require("../Linkify/routes/user")
 const app = express();
 
 // Get data from environment variables
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT;
 const CONNECTION_URL = process.env.CONNECTION_URL;
 
 // Middleware configuration
