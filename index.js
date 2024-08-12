@@ -9,8 +9,8 @@ const compression = require('compression')
 const connectToMongoDb = require('./mongoDbConnection');
 const { checkAuth } = require('./middlewares/auth');
 
-const apiRouter = require("../Linkify/routes/url")
-const userRouter = require("../Linkify/routes/user")
+const apiRouter = require("./routes/url")
+const userRouter = require("./routes/user")
 const app = express();
 
 // Get data from environment variables
