@@ -46,14 +46,14 @@ async function handUserLogin(req, res) {
 }
 
 async function checkAutherization(req, res) {
-    const userAccessToken = req.cookies["access-token"];
+    const userAccessToken = req.body["access-token"];
     const user = getUser(userAccessToken);
 
     if (!userAccessToken || !user) return res.status(400).json({
         message: "User is not Logged In"
     })
-    req.user = user;
 
+    req.user = user;
     return res.status(200).json({
         "message": "User is Logged In"
     })
