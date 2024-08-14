@@ -16,15 +16,7 @@ const PORT = process.env.PORT;
 const CONNECTION_URL = process.env.CONNECTION_URL;
 
 // Middleware configuration
-const corsOptions = {
-    origin: true,
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-};
-
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
+app.use(cors());
 app.use(requestIp.mw());
 app.use(useragent.express());
 app.use(express.json());
