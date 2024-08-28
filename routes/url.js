@@ -8,8 +8,8 @@ const { getCurrentDateInfo } = require('../service/getCurrentDateInfo');
 
 // URL routes
 urlRouter.get("/allUrlInfo", authLoggedInUser, urlController.handleGetAllUrlInfo)
-urlRouter.post('/url/shorten', authLoggedInUser, urlController.handleGenerateNewShortURL);
-urlRouter.get('/url/analytics/:shortId', authLoggedInUser, urlController.handleGetAnalytics);
+urlRouter.post('/shorten', authLoggedInUser, urlController.handleGenerateNewShortURL);
+urlRouter.get('/analytics/:shortId', authLoggedInUser, urlController.handleGetAnalytics);
 
 urlRouter.get("/:shortId", async (req, res) => {
     try {
