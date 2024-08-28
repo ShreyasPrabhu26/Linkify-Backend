@@ -45,7 +45,7 @@ async function handUserLogin(req, res) {
     return res.json({ message: "Login successful", token });
 }
 
-async function checkAutherization(req, res) {
+async function checkAuthorization(req, res) {
     const userAccessToken = req.body["access-token"];
     const user = getUser(userAccessToken);
 
@@ -62,5 +62,5 @@ async function checkAutherization(req, res) {
 module.exports = {
     handleUserSignUp,
     handUserLogin,
-    checkAutherization
+    checkAuthorization
 };
