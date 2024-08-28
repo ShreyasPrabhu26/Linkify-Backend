@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const urlRouter = express.Router();
 const { url_model } = require("../models/url");
 const urlController = require('../controllers/url');
 const { authLoggedInUser } = require("../middlewares/auth");
@@ -7,17 +7,11 @@ const { getIpInfo } = require('../service/getIpInfo');
 const { getCurrentDateInfo } = require('../service/getCurrentDateInfo');
 
 // URL routes
-router.get("/", (req, res) => {
-    res.status(200).json({
-        message: "Welcome to Linkify Api Platform!",
-        source_code: "https://github.com/ShreyasPrabhu26/Linkify-Backend"
-    })
-})
+urlRouter.get("/allUrlInfo", authLoggedInUser, urlController.handleGetAllUrlInfo)
+urlRouter.post('/url/shorten', authLoggedInUser, urlController.handleGenerateNewShortURL);
+urlRouter.get('/url/analytics/:shortId', authLoggedInUser, urlController.handleGetAnalytics);
 
-router.post('/url/shorten', authLoggedInUser, urlController.handleGenerateNewShortURL);
-router.get('/url/analytics/:shortId', authLoggedInUser, urlController.handleGetAnalytics);
-
-router.get("/:shortId", async (req, res) => {
+urlRouter.get("/:shortId", async (req, res) => {
     try {
         let { shortId } = req.params;
 
@@ -81,4 +75,4 @@ router.get("/:shortId", async (req, res) => {
     }
 })
 
-module.exports = router;
+module.exports = urlRouter;

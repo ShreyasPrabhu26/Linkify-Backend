@@ -7,7 +7,7 @@ const compression = require('compression')
 const connectToMongoDb = require('./mongoDbConnection');
 const { checkAuth } = require('./middlewares/auth');
 
-const apiRouter = require("./routes/url")
+const urlRouter = require("./routes/url")
 const userRouter = require("./routes/user")
 const app = express();
 
@@ -26,8 +26,8 @@ app.use(compression())
 app.use(checkAuth);
 
 // Routes
-app.use("/", apiRouter);
-app.use("/user", userRouter);
+app.use("/api/v1/url", urlRouter);
+app.use("/api/v1/user", userRouter);
 
 connectToMongoDb(CONNECTION_URL)
     .then(() => {

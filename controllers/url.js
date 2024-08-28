@@ -1,6 +1,7 @@
 const ShortUniqueId = require('short-unique-id');
 const { randomUUID: randomID } = new ShortUniqueId({ length: 10 });
 const { url_model } = require("../models/url");
+const { getUser } = require('../service/auth');
 
 async function handleGenerateNewShortURL(req, res) {
     const { redirectURL } = req.body;
@@ -50,8 +51,23 @@ async function handleGetAnalytics(req, res) {
     return res.json(response);
 }
 
+async function handleGetAllUrlInfo(req, res) {
+    const token = req.cookies['access-token'];
+    const user = getUser(token);
+    req.user = user;
+
+    if (req.user) {
+        const allUrlInformation = await url_model.find({ createdBy: req.user._id });
+        res.status(200).send(allUrlInformation)
+    } else {
+        res.status(500).json({
+            error: "Internal Sever Error."
+        })
+    }
+}
 
 module.exports = {
     handleGenerateNewShortURL,
-    handleGetAnalytics
+    handleGetAnalytics,
+    handleGetAllUrlInfo
 };
