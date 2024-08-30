@@ -3,8 +3,7 @@ const { handleUserSignUp, handUserLogin, checkAuthorization } = require("../cont
 
 const router = express.Router();
 
-router.post("/", handleUserSignUp)
+router.post("/signup", handleUserSignUp)
 router.post("/login", handUserLogin)
-router.post("/checkAuthorization", checkAuthorization)
 
 module.exports = router

@@ -52,10 +52,6 @@ async function handleGetAnalytics(req, res) {
 }
 
 async function handleGetAllUrlInfo(req, res) {
-    const token = req.cookies['access-token'];
-    const user = getUser(token);
-    req.user = user;
-
     if (req.user) {
         const allUrlInformation = await url_model.find({ createdBy: req.user._id });
         res.status(200).send(allUrlInformation)

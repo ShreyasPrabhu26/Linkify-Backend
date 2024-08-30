@@ -2,14 +2,14 @@ const express = require('express');
 const urlRouter = express.Router();
 const { url_model } = require("../models/url");
 const urlController = require('../controllers/url');
-const { authLoggedInUser } = require("../middlewares/auth");
+const { authMiddleware } = require("../middlewares/auth");
 const { getIpInfo } = require('../service/getIpInfo');
 const { getCurrentDateInfo } = require('../service/getCurrentDateInfo');
 
 // URL routes
-urlRouter.get("/allUrlInfo", authLoggedInUser, urlController.handleGetAllUrlInfo)
-urlRouter.post('/shorten', authLoggedInUser, urlController.handleGenerateNewShortURL);
-urlRouter.get('/analytics/:shortId', authLoggedInUser, urlController.handleGetAnalytics);
+urlRouter.get("/allUrlInfo", authMiddleware, urlController.handleGetAllUrlInfo)
+urlRouter.post('/shorten', authMiddleware, urlController.handleGenerateNewShortURL);
+urlRouter.get('/analytics/:shortId', authMiddleware, urlController.handleGetAnalytics);
 
 urlRouter.get("/:shortId", async (req, res) => {
     try {

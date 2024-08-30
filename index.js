@@ -5,7 +5,6 @@ const useragent = require('express-useragent');
 const cookieParser = require('cookie-parser');
 const compression = require('compression')
 const connectToMongoDb = require('./mongoDbConnection');
-const { checkAuth } = require('./middlewares/auth');
 
 const urlRouter = require("./routes/url")
 const userRouter = require("./routes/user")
@@ -23,7 +22,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(compression())
-app.use(checkAuth);
 
 // Routes
 app.use("/api/v1/url", urlRouter);

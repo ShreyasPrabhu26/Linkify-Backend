@@ -18,9 +18,8 @@ async function handleUserSignUp(req, res) {
         });
 
         const token = setUser(user);
-        res.cookie("access-token", token);
 
-        return res.json({ message: "User signed up successfully" });
+        return res.status(200).json({ message: "User signed up successfully", "access-token": token });
 
     } catch (err) {
         return res.status(400).json({ error: `User already exists` });
@@ -40,27 +39,11 @@ async function handUserLogin(req, res) {
     }
 
     const token = setUser(user);
-    res.cookie("access-token", token);
 
-    return res.json({ message: "Login successful", token });
+    return res.status(200).json({ message: "Login successful", "access-token": token });
 }
 
-async function checkAuthorization(req, res) {
-    const userAccessToken = req.body["access-token"];
-    const user = getUser(userAccessToken);
-
-    if (!userAccessToken || !user) return res.status(400).json({
-        message: "User is not Logged In"
-    })
-
-    req.user = user;
-    return res.status(200).json({
-        "message": "User is Logged In"
-    })
-
-}
 module.exports = {
     handleUserSignUp,
     handUserLogin,
-    checkAuthorization
 };

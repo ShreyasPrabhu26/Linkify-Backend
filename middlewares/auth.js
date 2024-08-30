@@ -1,28 +1,30 @@
 const { getUser } = require('../service/auth');
+const JWT_SECRET = process.env.JWT_SECRET_KEY
 
-async function checkAuth(req, res, next) {
-    const userAccessToken = req.cookies["access-token"];
-    const user = getUser(userAccessToken);
-    if (user) {
-        req.user = user;
+
+const authMiddleware = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(403).json({});
     }
-    next();
-}
+    const token = authHeader.split(' ')[1];
+    try {
+        user = getUser(token);
 
-async function authLoggedInUser(req, res, next) {
-    const userAccessToken = req.cookies["access-token"];
-    const user = getUser(userAccessToken);
+        if (!user) {
+            throw new Error;
+        }
+        req.user = user;
+        next();
 
-    if (!userAccessToken || !user) return res.status(400).json({
-        message: "Please Login to use this service."
-    })
-
-    req.user = user;
-    next();
-}
+    } catch (err) {
+        return res.status(403).json({
+            message: "Please Login to use this service."
+        });
+    }
+};
 
 
 module.exports = {
-    authLoggedInUser,
-    checkAuth,
+    authMiddleware,
 }
